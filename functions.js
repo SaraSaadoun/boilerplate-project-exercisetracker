@@ -1,6 +1,6 @@
 const Exercise = require("./models/exercise-model");
 const Log = require("./models/log-model");
-const User = require("./models/User-model");
+const User = require("./models/user-model");
 const mongoose = require("mongoose");
 
 const findUserById = async (id) => {
@@ -79,7 +79,7 @@ const saveExercise = async (user_id, description, duration, date) => {
       username: user.username,
       description,
       duration,
-      date: dateObj,
+      date: dateObj.toDateString(),
       _id: user_id,
     };
     const isFound = await Log.count({ user_id: user_id });
@@ -146,7 +146,7 @@ const findAllLogs = async (user_id, from, to, limit) => {
       newLogs.push({
         description: allLogs[i].description,
         duration: allLogs[i].duration,
-        date: allLogs[i].date,
+        date: allLogs[i].date.toDateString(),
       });
     }
     // console.log("all", allLogs);
@@ -172,7 +172,7 @@ const userWithAllLogs = async (user_id, from, to, limit) => {
     _id: user_id,
     username: user.username,
     count: allLogs.length,
-    logs: allLogs,
+    log: allLogs,
   };
   return result;
 };

@@ -4,7 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 const Exercise = require("./models/exercise-model");
 const Log = require("./models/log-model");
-const User = require("./models/User-model");
+const User = require("./models/user-model");
 const mongoose = require("mongoose");
 const {
   findAllUsers,
